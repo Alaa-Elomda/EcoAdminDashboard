@@ -1,0 +1,38 @@
+<div *ngIf="order; else loadingBlock" class="align-center">
+  <div class="orderDiv m-5" class="alert alert-success">
+    <p><label> Order Date: </label>{{ order.orderDate }}</p>
+    <p>
+      <label>Order Requester: </label>
+      <a routerLink="/users/{{ order.userId }}" style="text-decoration: none">{{
+        order.userId
+      }}</a>
+    </p>
+    <p><label>Order Status: </label>{{ order.orderStatus }}</p>
+    <p><label>Total Price: </label>{{ order.totalPrice }}</p>
+  </div>
+
+  <p class="mt-3 font-weight-bold" style="font-weight: bolder">
+    ordered products:
+  </p>
+  <div class="orderDiv m-auto d-flex row">
+    <div class="card me-5" style="width: 18rem" *ngFor="let o of products">
+      <!-- <img src="{{o.productId}}" class="card-img-top" alt="..."> -->
+      <div class="card-body">
+        <p>
+          <label> product Id:</label>
+          <a
+            routerLink="/products/{{ o.productId }}"
+            style="text-decoration: none"
+            >{{ o.productId }}</a
+          >
+        </p>
+        <!-- <p class="card-text">{{o.productId}}</p> -->
+        <p><label>amount: </label>{{ o.amount }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingBlock>
+  <h1>Loading....</h1>
+</ng-template>

@@ -1,0 +1,27 @@
+<div class="alert alert-success row">
+    <table class="table table-active table-bordered align-middle col-8" style="text-align: center;">
+        <caption class="caption-top " style="text-align: center; font-size: 25px; color: black; font-weight: bold;">List of users</caption>
+        <thead>
+          <tr >
+            <th rowspan="2">id</th>
+            <th rowspan="2">Name</th>
+            <th rowspan="2">Email</th>
+            <th rowspan="2">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active"  *ngFor="let u of users">
+            <td> <a routerLink="/users/{{u._id}}" style="text-decoration: none;">{{u._id}}</a></td>
+            <td>{{u.userName}}</td>
+            <td>{{u.email}}</td>
+           
+            
+            <td (click)="deleteUser(u._id)"><a class="btn btn-outline-dark">Delete</a></td>
+            
+          </tr>
+        </tbody>
+      </table>
+  
+</div> 
+
+

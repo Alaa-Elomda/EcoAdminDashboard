@@ -1,0 +1,13 @@
+.orderDiv{
+   
+    border-radius: 10px;
+    box-shadow: inset;
+    margin:auto;
+    padding:15px;
+} 
+
+label{
+    font-weight: bold;
+    margin:5px;
+
+}

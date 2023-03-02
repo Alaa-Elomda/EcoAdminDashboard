@@ -1,0 +1,78 @@
+<h1 class="border-bottom border-dark">New Product</h1>
+<form [formGroup]="addProductForm" (ngSubmit)="submitForm()">
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Name: </label>
+    <input #name type="text" class="form-control" formControlName="name" />
+  </div>
+  <div *ngIf="!nameValid" style="color: red">Product name is required</div>
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Price: </label>
+    <input #price type="text" class="form-control" formControlName="price" />
+  </div>
+  <div *ngIf="!priceValid" style="color: red">
+    Price is required and must be a number with maximum two decimal digits
+  </div>
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Sale: </label>
+    <input #sale type="text" class="form-control" formControlName="sale" />
+  </div>
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Quantity: </label>
+    <input
+      #quantity
+      type="text"
+      class="form-control"
+      formControlName="quantity"
+    />
+  </div>
+  <div *ngIf="!quantityValid" style="color: red">
+    Quantity is required and must be a number
+  </div>
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Description: </label>
+    <input
+      #description
+      type="text"
+      class="form-control"
+      formControlName="description"
+    />
+  </div>
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Category: </label>
+    <select
+      #category
+      name="category"
+      formControlName="category"
+      (change)="getSelectedCateory($event)"
+    >
+      <option value="" disabled="disabled" selected="selected">
+        Choose Category
+      </option>
+      <option *ngFor="let item of categories" [value]="item.categoryName">
+        {{ item.categoryName }}
+      </option>
+    </select>
+  </div>
+  <div *ngIf="!categoryValid" style="color: red">
+    You must choose a category!!!
+  </div>
+  <div class="form-group d-flex m-4">
+    <label class="col-4">Image: </label>
+    <input
+      type="file"
+      (change)="uploadFile($event)"
+      formControlName="productImage"
+    />
+  </div>
+
+  <div *ngIf="!imageValid" style="color: red">You must choose an image!!!</div>
+  <div class="form-group d-flex justify-content-center">
+    <button
+      type="submit"
+      [disabled]="addProductForm.invalid"
+      class="btn btn-outline-dark btn-block btn-lg m-4"
+    >
+      Add
+    </button>
+  </div>
+</form>

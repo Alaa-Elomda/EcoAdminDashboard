@@ -1,0 +1,123 @@
+<h1 class="border-bottom border-dark justify-content-center d-flex">
+  Edit Product Information
+</h1>
+<div class="row justify-content-center d-flex m-4">
+  <img src="{{ Image }}" class="col-4" (click)="openFile()" />
+  <input type="file" (change)="fileChoosen($event)" id="input_file" hidden />
+  <!-- <a href = "http://localhost:4200/editProduct/{{ID}}" id='route' hidden></a> -->
+  <div class="col-5">
+    <form [formGroup]="editProductForm">
+      <div class="form-group d-flex">
+        <label class="col-3">Name: </label>
+        <input
+          #name
+          type="text"
+          class="form-control mb-1"
+          formControlName="name"
+          value="{{ Name }}"
+        />
+      </div>
+      <div *ngIf="!nameValid" style="color: red">Product Name is required</div>
+      <div class="form-group d-flex">
+        <label class="col-3">Price: </label>
+        <input
+          #price
+          type="text"
+          class="form-control mb-1"
+          formControlName="price"
+          value="{{ Price }}"
+        />
+      </div>
+      <div *ngIf="!priceValid" style="color: red">
+        Price is required and must be a number with maximum two decimal digits
+      </div>
+      <div class="form-group d-flex">
+        <label class="col-3">Sale: </label>
+        <input
+          #sale
+          type="text"
+          class="form-control mb-1"
+          formControlName="sale"
+          value="{{ Sale }}"
+        />
+      </div>
+      <div class="form-group d-flex">
+        <label class="col-3">Quantity: </label>
+        <input
+          #quantity
+          type="text"
+          class="form-control mb-1"
+          formControlName="quantity"
+          value="{{ Quantity }}"
+        />
+      </div>
+      <div *ngIf="!quantityValid" style="color: red">
+        Quantity is required and must be a number
+      </div>
+      <div class="form-group d-flex">
+        <label class="col-3">Description: </label>
+        <input
+          #description
+          type="text"
+          class="form-control mb-1"
+          formControlName="description"
+          value="{{ Description }}"
+        />
+      </div>
+      <div class="form-group d-flex m-4">
+        <label class="col-4">inStock: </label>
+        <select #stock name="stock">
+          <option value="{{ inStock }}" disabled="disabled" selected>
+            {{ inStock }}
+          </option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <!-- <div class="form-group d-flex m-4">
+    <label class="col-4">Category: </label> 
+    <select #category name="category"  (change)="getSelectedCateory($event)">
+      <option value="" disabled="disabled" selected="selected" >{{Category}}</option>
+      <option *ngFor="let item of categories"   [value]="item.categoryName">{{item.categoryName}}</option>
+   </select>
+  </div> -->
+
+      <div class="form-group d-flex m-4">
+        <label class="col-4">Category: </label>
+        <select #category name="category">
+          <option value="{{ Category }}" disabled="disabled" selected>
+            {{ Category }}
+          </option>
+          <option *ngFor="let item of categories" [value]="item.categoryName">
+            {{ item.categoryName }}
+          </option>
+        </select>
+      </div>
+      <!-- <div *ngIf="!categoryValid" style="color:red">
+    You must choose a category!!!
+  </div> -->
+      <div class="form-group d-flex justify-content-center m-2">
+        <input
+          type="button"
+          value="Edit"
+          (click)="
+            Edit(
+              name.value,
+              price.value,
+              sale.value,
+              quantity.value,
+              description.value,
+              stock.value,
+              category.value
+            )
+          "
+          class="btn btn-outline-dark"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+<ng-template #loadingBlock>
+  <h1>Loading....</h1>
+</ng-template>

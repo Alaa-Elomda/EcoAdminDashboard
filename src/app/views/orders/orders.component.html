@@ -1,0 +1,33 @@
+<div class="alert alert-success row">
+    <table class="table table-active table-bordered align-middle col-8" style="text-align: center;">
+        <caption class="caption-top " style="text-align: center; font-size: 25px; color: black; font-weight: bold;">List of orders</caption>
+        <thead>
+          <tr >
+            <th>Order Id</th>
+            <th >Order Status</th>
+            <th>Order Date </th>
+            <th>Order Requester Id</th>
+            <th >Total Price</th>
+            <th >Edit</th>
+            <th >Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active"  *ngFor="let o of orders">
+            <td> <a routerLink="/orders/{{o._id}}" style="text-decoration: none;">{{o._id}}</a></td>
+            <td>{{o.orderStatus}}</td>
+            <td>{{o.orderDate.slice(0, 10)}}</td>
+            <td><a routerLink="/users/{{o.userId}}" style="text-decoration: none;">{{o.userId}}</a></td>
+            <td>{{o.totalPrice}}</td>
+           
+            <td><a routerLink="/editOrder/{{o._id}}" class="btn btn-outline-success">Edit</a></td>
+            <td (click)="delete(o._id)"><a routerLink="/orders" class="btn btn-outline-dark">Delete</a></td>
+            
+          </tr>
+        </tbody>
+      </table>
+  
+</div> 
+
+

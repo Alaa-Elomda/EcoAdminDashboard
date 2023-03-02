@@ -1,0 +1,207 @@
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Products {{ "&" }} Users</c-card-header>
+      <c-card-body>
+        <c-row>
+          <c-col md="6" xl="6" xs="12">
+            <c-row>
+              <c-col sm="6">
+                <div
+                  class="border-start border-start-4 border-start-success py-1 px-3 mb-3"
+                >
+                  <div class="text-medium-emphasis small">Products</div>
+                  <div class="fs-5 fw-semibold">{{ totalProductsCount }}</div>
+                </div>
+              </c-col>
+              <c-col sm="6">
+                <div
+                  class="border-start border-start-4 border-start-warning py-1 px-3 mb-3"
+                >
+                  <div class="text-medium-emphasis small">Orders</div>
+                  <div class="fs-5 fw-semibold">{{ totalOrdersCount }}</div>
+                </div>
+              </c-col>
+            </c-row>
+
+            <hr class="mt-0" />
+
+            <div *ngFor="let category of categories">
+              <div class="progress-group">
+                <div class="progress-group-header">
+                  <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
+                  <span>{{ category }}</span>
+                  <span class="ms-auto font-semibold">
+                    <span class="text-medium-emphasis small"
+                      >{{ categoryPercentages[category].toFixed(0) }}%</span
+                    >
+                  </span>
+                </div>
+                <div class="progress-group-bars">
+                  <c-progress thin>
+                    <c-progress-bar
+                      color="success"
+                      value="{{ categoryPercentages[category] }}"
+                    ></c-progress-bar>
+                  </c-progress>
+                </div>
+              </div>
+            </div>
+
+            <div class="progress-group mb-4">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
+                <span>Accepted Orders ({{ acceptedOrdersCount }})</span>
+                <span class="ms-auto font-semibold"
+                  >{{ acceptedOrdersPercentage.toFixed(0) }}%</span
+                >
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar
+                    color="warning"
+                    value="{{ acceptedOrdersPercentage }}"
+                  ></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+
+            <div class="progress-group mb-4">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
+                <span>Pending Orders ({{ pendingOrdersCount }})</span>
+                <span class="ms-auto font-semibold"
+                  >{{ pendingOrdersPercentage.toFixed(0) }}%</span
+                >
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar
+                    color="warning"
+                    value="{{ pendingOrdersPercentage }}"
+                  ></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+
+            <div class="progress-group mb-4">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
+                <span>Rejected Orders ({{ rejectedOrdersCount }})</span>
+                <span class="ms-auto font-semibold"
+                  >{{ rejectedOrdersPercentage.toFixed(0) }}%</span
+                >
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar
+                    color="warning"
+                    value="{{ rejectedOrdersPercentage }}"
+                  ></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+          </c-col>
+
+          <c-col md="6" xl="6" xs="12">
+            <c-row>
+              <c-col sm="6">
+                <div
+                  class="border-start border-start-4 border-start-success py-1 px-3 mb-3"
+                >
+                  <div class="text-medium-emphasis small">Categories</div>
+                  <div class="fs-5 fw-semibold">{{ categoryCount }}</div>
+                </div>
+              </c-col>
+              <c-col sm="6">
+                <div
+                  class="border-start border-start-4 border-start-info py-1 px-3 mb-3"
+                >
+                  <div class="text-medium-emphasis small">Users</div>
+                  <div class="fs-5 fw-semibold">{{ totalUsersCount }}</div>
+                </div>
+              </c-col>
+            </c-row>
+
+            <hr class="mt-0" />
+            <!----------------------------------------------That's Working------------------------------------------------------------------>
+            <c-col xs="12" lg="6" class="mx-auto">
+              <c-card class="mb-4">
+                <c-card-body>
+                  <c-chart type="doughnut" [data]="chartDoughnutData"></c-chart>
+                </c-card-body>
+              </c-card>
+            </c-col>
+            <div class="progress-group mb-4">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
+                <span>Male</span>
+                <span class="ms-auto font-semibold"
+                  >{{ malePercentage.toFixed(0) }}%</span
+                >
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar
+                    color="info"
+                    value="{{ malePercentage }}"
+                  ></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+            <div class="progress-group mb-5">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUserFemale"></svg>
+                <span>Female</span>
+                <span class="ms-auto font-semibold"
+                  >{{ femalePercentage.toFixed(0) }} %</span
+                >
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar
+                    color="danger"
+                    value="{{ femalePercentage }}"
+                  ></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+            <!---------------------------------------------------------------------------------------------------------------->
+            <div class="divider d-flex justify-content-center">
+              <button
+                cButton
+                class="text-muted btn-link"
+                color="transparent"
+                size="sm"
+                type="button"
+              >
+                <svg cIcon name="cil-options"></svg>
+              </button>
+            </div>
+          </c-col>
+        </c-row>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+<!--some charts to choose from them-->
+<c-row>
+  <c-col xs="12"> </c-col>
+  <c-col xs="12" lg="8">
+    <c-card class="mb-4">
+      <c-card-header> Bar Chart </c-card-header>
+      <c-card-body>
+        <c-chart type="bar" [data]="chartBarData"></c-chart>
+      </c-card-body>
+    </c-card>
+  </c-col>
+  <c-col xs="12" lg="4">
+    <c-card class="mb-4">
+      <c-card-header> Pie Chart </c-card-header>
+      <c-card-body>
+        <c-chart type="pie" [data]="chartPieData"></c-chart>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

@@ -1,0 +1,68 @@
+<div class="alert alert-success row">
+  <table
+    class="table table-active table-bordered align-middle col-8"
+    style="text-align: center"
+  >
+    <caption
+      class="caption-top"
+      style="
+        text-align: center;
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+      "
+    >
+      List of categories
+    </caption>
+    <thead>
+      <tr>
+        <th rowspan="2">id</th>
+        <th rowspan="2">Category Name</th>
+        <th rowspan="2">Edit</th>
+        <th rowspan="2">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor="let c of categories">
+        <td>{{ c._id }}</td>
+        <td>{{ c.categoryName }}</td>
+        <td>
+          <a
+            routerLink="/editCategory/{{ c._id }}"
+            class="btn btn-outline-success"
+            >Edit</a
+          >
+        </td>
+        <td (click)="delete(c._id)">
+          <a class="btn btn-outline-dark">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="text-center m-5">
+  <h2>Add Category</h2>
+  <div class="d-flex justify-content-center m-3">
+    <form [formGroup]="addCategoryForm" (ngSubmit)="addCategory()">
+      <div>
+        <label class="col-4 m-3">Category Name</label>
+        <input
+          class="col-5 m-3"
+          type="text"
+          formControlName="categoryName"
+          [(ngModel)]="categoryName"
+        />
+      </div>
+      <div>
+        <button
+          type="submit"
+          [disabled]="addCategoryForm.invalid"
+          class="btn btn-outline-success btn-block btn-lg m-3"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

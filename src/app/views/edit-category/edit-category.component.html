@@ -1,0 +1,17 @@
+<h1 class="border-bottom border-dark ">Edit Category</h1>
+<form [formGroup]="editCategoryForm">
+  <div class="form-group d-flex">
+    <label class="col-5">Category Name: </label>
+    <input #newCategoryName type="text" class="form-control"  formControlName="categoryName"  [value]="categoryName">
+  
+  </div>
+  <div class="form-group d-flex justify-content-center m-2">
+    <input type="button" value="Edit" (click)="editCategory(newCategoryName.value)" routerLink="/category" class="btn btn-outline-dark">
+  </div>
+</form>
+
+
+
+
+
+

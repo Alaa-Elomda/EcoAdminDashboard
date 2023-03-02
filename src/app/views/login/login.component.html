@@ -1,0 +1,41 @@
+
+<div class="login">
+    <div class="form-block">
+        <div class="grid align__item">
+            <div class="register">
+                <h1 class="logo me-auto me-lg-0 navbar-brand">ECO<span><fa-icon [icon]="faSeedling"></fa-icon>.</span>
+                </h1>
+                <h2 mat-dialog-title>Login to ECO</h2>
+                <form action="" method="post" class="form" [formGroup]="logForm">
+                    <div class="form__field">
+                        <input type="email" placeholder="email" formControlName="email"
+                            [class.error]="logForm.get('email')?.invalid && logForm.get('email')?.touched && submitted">
+                        <p [class.error]="logForm.get('email')?.invalid && logForm.get('email')?.touched && submitted">
+                            Enter valid Email</p>
+                    </div>
+                    <div class="form__field">
+                        <input [type]="showLog? 'text' : 'password'" placeholder="password" formControlName="password"
+                            [class.error]="logForm.get('password')?.invalid && logForm.get('password')?.touched && submitted">
+                        <p
+                            [class.error]="logForm.get('password')?.invalid && logForm.get('password')?.touched && submitted">
+                            Enter password</p>
+                        <button class="showPass" ngClass="{'hide': {{!showLog}}, 'show': {{showLog}}}"
+                            (click)="passwordLog()">
+                            <fa-icon [icon]="showLog? faEyeSlash:faEye"></fa-icon>
+                        </button>
+                    </div>
+                    <div class="form__field">
+                        <input type="submit" value="Login" (click)="Login()" [disabled]="!logForm.get('password')?.touched && !logForm.get('email')?.touched"
+                        [class.disabled]="!logForm.get('password')?.touched && !logForm.get('email')?.touched">
+                    </div>
+                    <div class="errorHandle">
+                        <p [class.error]="errorHandleLog">{{msg}}</p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+  

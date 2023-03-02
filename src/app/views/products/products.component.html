@@ -1,0 +1,78 @@
+<div class="alert alert-success row">
+  <div class="row">
+    <div class="search-hero">
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          name="search"
+          [(ngModel)]="x"
+          autocomplete="off"
+          placeholder="Start searching for a product"
+        />
+        <div class="input-group-prepend" style="cursor: pointer">
+          <span class="input-group-text"
+            ><fa-icon [icon]="faSearch"></fa-icon
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table
+    class="table table-active table-bordered align-middle col-8"
+    style="text-align: center"
+  >
+    <caption
+      class="caption-top"
+      style="
+        text-align: center;
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+      "
+    >
+      List of products
+    </caption>
+    <thead>
+      <tr>
+        <th rowspan="2">id</th>
+        <th rowspan="2">Name</th>
+        <th rowspan="2">Price</th>
+        <th rowspan="2">Sale</th>
+        <th rowspan="2">Quantity</th>
+        <th rowspan="2">Category</th>
+        <th rowspan="2">Description</th>
+        <th rowspan="2">inStock</th>
+        <th rowspan="2">Edit</th>
+        <th rowspan="2">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor="let s of products | filter : x">
+        <td>
+          <a routerLink="/products/{{ s._id }}" style="text-decoration: none">{{
+            s._id
+          }}</a>
+        </td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.price }}</td>
+        <td>{{ s.sale }}</td>
+        <td>{{ s.quantity }}</td>
+        <td>{{ s.category }}</td>
+        <td>{{ s.description }}</td>
+        <td>{{ s.inStock }}</td>
+
+        <td>
+          <a
+            routerLink="/editProduct/{{ s._id }}"
+            class="btn btn-outline-success"
+            >Edit</a
+          >
+        </td>
+        <td (click)="delete(s._id)">
+          <a routerLink="/products" class="btn btn-outline-dark">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
