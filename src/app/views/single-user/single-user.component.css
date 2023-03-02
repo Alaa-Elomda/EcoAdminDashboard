@@ -48,7 +48,7 @@
 only screen and (max-width: 1398px)  {
 
 	img.rounded-circle  {
-		max-width: 400px;
+		max-width: 200px;
 	  }
 
 }
@@ -58,7 +58,7 @@ only screen and (max-width: 768px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
 	img.rounded-circle  {
-		max-width: 300px;
+		max-width: 200px;
 	  }
 
 }
